@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { Button, Container, Row, Col, Form } from "react-bootstrap"
+import { Cart } from "./cart"
 
 export function App() {
   const [inputValue, setInputValue] = useState('')
+  const [dataValue, setDataValue] = useState({})
 
   function handleChange(event) {
     setInputValue(inputValue => inputValue = event.target.value);
@@ -18,7 +20,8 @@ export function App() {
       })
 
       let response = await request.json();
-      console.log(response)
+      setDataValue(dataValue => dataValue = response)
+      console.log(dataValue)
     }catch(error){
       console.log(error)
     }
@@ -26,6 +29,8 @@ export function App() {
 
   useEffect(() => {
     handleSubmit();
+
+    return
   }, [])
 
   return (
@@ -44,7 +49,7 @@ export function App() {
           </Form>
         </Col>
         <Col className="m-5">
-          <h1>Tutaj Wyświetli się Prognoza</h1>
+          <Cart items={{...dataValue}} name={inputValue}/>
         </Col>
       </Row>
     </Container>
