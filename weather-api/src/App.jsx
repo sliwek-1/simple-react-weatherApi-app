@@ -4,6 +4,7 @@ import { Cart } from "./cart"
 
 export function App() {
   const [inputValue, setInputValue] = useState('')
+  const [cityName, setCityName] = useState('')
   const [dataValue, setDataValue] = useState({})
 
   function handleChange(event) {
@@ -22,6 +23,7 @@ export function App() {
 
       let response = await request.json();
       setDataValue(response)
+      setCityName(inputValue)
     }catch(error){
       console.log(error)
     }
@@ -47,7 +49,7 @@ export function App() {
           </Form>
         </Col>
         <Col className="m-5">
-          <Cart items={{...dataValue}} name={inputValue}/>
+          <Cart items={{...dataValue}} name={cityName}/>
         </Col>
       </Row>
     </Container>
