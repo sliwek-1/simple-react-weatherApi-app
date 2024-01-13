@@ -1,5 +1,18 @@
-export function Cart(cloud_pct, feels_like, humidity, max_temp, min_temp, sunrise, sunset, temp, win_degrees, wind_speed, name) {
+import { Spinner, Card } from "react-bootstrap"
+
+export function Cart({items , name}) {
     return (
-        <h1>{name}</h1>
+        <>
+            {items.error != null ? 
+            <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner> : 
+            <Card>
+                <Card.Body>
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Text>Odczuwalna Temperatura {items.feels_like}</Card.Text>
+                </Card.Body>
+            </Card>}
+        </>
     )
 }

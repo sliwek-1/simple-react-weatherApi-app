@@ -7,11 +7,12 @@ export function App() {
   const [dataValue, setDataValue] = useState({})
 
   function handleChange(event) {
-    setInputValue(inputValue => inputValue = event.target.value);
+    setInputValue(event.target.value);
   }
 
-  async function handleSubmit(){
-    try{
+  async function handleSubmit(event){
+    event.preventDefault();
+    try {
       let request = await fetch(`https://api.api-ninjas.com/v1/weather?city=${inputValue}`, {
         method: 'GET',
         headers: {
@@ -20,8 +21,7 @@ export function App() {
       })
 
       let response = await request.json();
-      setDataValue(dataValue => dataValue = response)
-      console.log(dataValue)
+      setDataValue(response)
     }catch(error){
       console.log(error)
     }
@@ -29,9 +29,7 @@ export function App() {
 
   useEffect(() => {
     handleSubmit();
-
-    return
-  }, [])
+  }, [dataValue])
 
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
