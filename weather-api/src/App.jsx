@@ -35,7 +35,7 @@ export function App() {
   }, [dataValue])
 
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+    <Container className="d-flex justify-content-center align-items-center" style={{height: "100vh", width: "100vw"}}>
       <Row>
         <Col className="m-5">
           <Form className="d-flex flex-column fs-5">
