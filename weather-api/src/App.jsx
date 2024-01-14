@@ -24,6 +24,7 @@ export function App() {
       let response = await request.json();
       setDataValue(response)
       setCityName(inputValue)
+      console.log(response)
     }catch(error){
       console.log(error)
     }
